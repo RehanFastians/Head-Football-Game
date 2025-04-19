@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Raylib C++ Starter Template
 
 Raylib C++ Starter Template for Visual Studio Code on Windows.
@@ -24,3 +25,6 @@ Tested on both Windows 10 and Windows 11.
 | 🌍 <a href="https://www.programmingwithnick.com">My Website</a> | <br>
 </p>
 
+=======
+# Head-Football-Game
+>>>>>>> 2ae5f486692da3b97b06eff4f8750c3acf0418df
