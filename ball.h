@@ -10,18 +10,23 @@ class Ball
     Vector2 speed;
     double gravity;
     double airResistance;
-    public:
-    Ball(){
-        ballImage= LoadTexture("images\football.png");
-        position={0, 0};
-        speed = {0,0};
+
+public:
+    Ball()
+    {
+        Image temp = LoadImage("football.png");
+        ImageResize(&temp, 30, 30);
+        ballImage = LoadTextureFromImage(temp);
+        position = {0.0, 0.0};
+        speed = {0.0, 0.0};
         gravity = 10;
-        airResistance=7;
-    } 
+        airResistance = 7;
+    }
     Vector2 getPosition();
     void setSpeed(Vector2);
     void update();
     void updatePosition(Vector2);
+    void draw();
 };
 
 #endif

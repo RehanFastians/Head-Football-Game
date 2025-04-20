@@ -7,6 +7,11 @@ Vector2 Ball ::getPosition()
     return position;
 }
 
+void Ball ::draw()
+{
+    DrawTextureV(ballImage, position, WHITE);
+}
+
 void Ball ::setSpeed(Vector2 speed)
 {
     this->speed = speed;
@@ -14,7 +19,8 @@ void Ball ::setSpeed(Vector2 speed)
 
 void Ball ::updatePosition(Vector2 pos)
 {
-    position = pos;
+    position.x = pos.x;
+    position.y=pos.y;
 }
 
 void Ball ::update()
