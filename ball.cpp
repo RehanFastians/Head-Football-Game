@@ -50,122 +50,6 @@ bool Ball ::isKicked()
     }
     return false;
 }
-
-// void Ball::update(Player *player1, Player *player2)
-// {
-//     checkPlayerCollision(player1, player2);
-
-//     if (isKicked())
-//     {
-//         if (player)
-//         {
-//             speed = player->kickPower;
-//         }
-//         if (player != nullptr)
-//         {
-//             player = nullptr; // reset player after kick
-//         }
-//     }
-
-//     if (player)
-//     {
-//         // Ball is attached to the player
-//         if (!isKicked())
-//         {
-//         // Place the ball in front of the player
-//         position.x = player->getPosition().x + player->getDirection().x * 20; // Adjust offset as needed
-//         position.y = player->getPosition().y + player->getDirection().y * 20; // Adjust offset as needed
-//         }
-//         direction = player->getDirection(); // Get player's direction
-//         player->speed = this->speed; // Set player's speed to ball's speed
-//         // Update direction based on player's direction
-//         if (player->getDirection().x == 1 && player->getDirection().y == 0)
-//         {
-//             direction = {1.0, 0.0}; // right
-//         }
-//         else if (player->getDirection().x == -1 && player->getDirection().y == 0)
-//         {
-//             direction = {-1.0, 0.0}; // left
-//         }
-//         else if (player->getDirection().x == 0 && player->getDirection().y == 1)
-//         {
-//             direction = {0.0, 1.0}; // down
-//         }
-//         else if (player->getDirection().x == 0 && player->getDirection().y == -1)
-//         {
-//             direction = {0.0, -1.0}; // up
-//         }
-//         else if (player->getDirection().x == -1 && player->getDirection().y == -1)
-//         {
-//             direction = {-1.0, -1.0}; // up left
-//         }
-//         else if (player->getDirection().x == -1 && player->getDirection().y == 1)
-//         {
-//             direction = {-1.0, 1.0}; // down left
-//         }
-//         else if (player->getDirection().x == 1 && player->getDirection().y == -1)
-//         {
-//             direction = {1.0, -1.0}; // up right
-//         }
-//         else if (player->getDirection().x == 1 && player->getDirection().y == 1)
-//         {
-//             direction = {1.0, 1.0}; // down right
-//         }
-//     }
-//     else
-//     {
-//         // Ball is not attached to any player
-//         speed -= groundResistance;
-//     }
-
-//     // Update ball position based on direction and speed
-//     if (direction.x == 1 && direction.y == 0)
-//     {
-//         position.x += speed;
-//     }
-//     else if (direction.x == -1 && direction.y == 0)
-//     {
-//         position.x -= speed;
-//     }
-//     else if (direction.x == 0 && direction.y == 1)
-//     {
-//         position.y += speed;
-//     }
-//     else if (direction.x == 0 && direction.y == -1)
-//     {
-//         position.y -= speed;
-//     }
-//     else if (direction.x == -1 && direction.y == -1)
-//     {
-//         position.x -= speed / 2;
-//         position.y -= speed / 2;
-//     }
-//     else if (direction.x == -1 && direction.y == 1)
-//     {
-//         position.x -= speed / 2;
-//         position.y += speed / 2;
-//     }
-//     else if (direction.x == 1 && direction.y == -1)
-//     {
-//         position.x += speed / 2;
-//         position.y -= speed / 2;
-//     }
-//     else if (direction.x == 1 && direction.y == 1)
-//     {
-//         position.x += speed / 2;
-//         position.y += speed / 2;
-//     }
-
-//     // Ensure position stays within screen bounds
-//     if (position.x < 0)
-//         position.x = 0;
-//     if (position.x > GetScreenWidth() - ballImage.width)
-//         position.x = GetScreenWidth() - ballImage.width;
-//     if (position.y < 0)
-//         position.y = 0;
-//     if (position.y > GetScreenHeight() - ballImage.height)
-//         position.y = GetScreenHeight() - ballImage.height;
-// }
 void Ball::update(Player *player1, Player *player2)
 {
     checkPlayerCollision(player1, player2);
@@ -185,8 +69,16 @@ void Ball::update(Player *player1, Player *player2)
         if (!isKicked())
         {
             // Place the ball in front of the player
-            position.x = player->getPosition().x + player->getDirection().x * 20; // Adjust offset as needed
-            position.y = player->getPosition().y + player->getDirection().y * 20; // Adjust offset as needed
+            if (player->getDirection().x == 0 || player->getDirection().y == 0 || (player->getDirection().x == 1 && player->getDirection().y == 1))
+            {
+                position.x = player->getPosition().x + player->getDirection().x * 20 + 5; // Adjust offset as needed
+                position.y = player->getPosition().y + player->getDirection().y * 20 + 5; // Adjust offset as needed
+            }
+            else
+            {
+                position.x = player->getPosition().x + player->getDirection().x * 10 + 5; // Adjust offset as needed
+                position.y = player->getPosition().y + player->getDirection().y * 10 + 5; // Adjust offset as needed
+            }
         }
 
         // Update direction based on player's direction
