@@ -19,7 +19,7 @@ void Player::setPosition(Vector2 newPosition)
     position = newPosition;
 }
 
-void Player::update()
+void Player::update(int horizontalLimit, int verticalLimit)
 {
 
     if (IsKeyDown(controlsKey[0]) && IsKeyDown(controlsKey[2]))
@@ -103,14 +103,14 @@ void Player::update()
     {
         ImageRotate(&temp, 45.0f);
     }
-    if (position.x < 0)
-        position.x = 0;
-    if (position.x > GetScreenWidth() - playerImage.width)
-        position.x = GetScreenWidth() - playerImage.width;
-    if (position.y < 0)
-        position.y = 0;
-    if (position.y > GetScreenHeight() - playerImage.height)
-        position.y = GetScreenHeight() - playerImage.height;
+    if (position.x < horizontalLimit)
+        position.x = horizontalLimit;
+    if (position.x > GetScreenWidth() - playerImage.width-horizontalLimit)
+        position.x = GetScreenWidth() - playerImage.width-horizontalLimit;
+    if (position.y < verticalLimit)
+        position.y = verticalLimit;
+    if (position.y > GetScreenHeight() - playerImage.height-verticalLimit)
+        position.y = GetScreenHeight() - playerImage.height-verticalLimit;
 
     playerImage = LoadTextureFromImage(temp);
     UnloadImage(temp);

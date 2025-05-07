@@ -54,7 +54,7 @@ public:
     Vector2 getPosition();
     Texture2D getPlayerImage();
     void setSpeed(int);
-    void update();
+    void update(int, int);
     void updatePosition(Vector2);
     void draw();
     void setPosition(Vector2);
