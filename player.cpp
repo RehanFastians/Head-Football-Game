@@ -21,11 +21,7 @@ void Player::setPosition(Vector2 newPosition)
 
 void Player::update()
 {
-    Image temp;
-    if (type == "blue")
-        temp = LoadImage("images/playerBlue.png");
-    else
-        temp = LoadImage("images/playerRed.png");
+
     if (IsKeyDown(controlsKey[0]) && IsKeyDown(controlsKey[2]))
     {
         position.x -= speed / 1.5;
@@ -70,6 +66,11 @@ void Player::update()
         position.x += speed;
         direction = {1.0, 0.0}; // right
     }
+    Image temp;
+    if (type == "blue")
+        temp = LoadImage("images/playerBlue.png");
+    else
+        temp = LoadImage("images/playerRed.png");
     if (direction.x == 0.0 && direction.y == 1.0)
     {
         ImageRotate(&temp, 90.0f);
@@ -110,7 +111,9 @@ void Player::update()
         position.y = 0;
     if (position.y > GetScreenHeight() - playerImage.height)
         position.y = GetScreenHeight() - playerImage.height;
+
     playerImage = LoadTextureFromImage(temp);
+    UnloadImage(temp);
 }
 void Player::updatePosition(Vector2 newPosition)
 {
@@ -119,4 +122,14 @@ void Player::updatePosition(Vector2 newPosition)
 void Player::draw()
 {
     DrawTexture(playerImage, position.x, position.y, WHITE);
+}
+
+Vector2 Player::getDirection()
+{
+    return direction;
+}
+
+Texture2D Player::getPlayerImage()
+{
+    return playerImage;
 }

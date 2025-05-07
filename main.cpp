@@ -19,8 +19,8 @@ int main()
     Player player2("red");
     player1.setPosition({SCREEN_WIDTH / 2.0 - 100, SCREEN_HEIGHT / 2.0});
     player2.setPosition({SCREEN_WIDTH / 2.0 + 100, SCREEN_HEIGHT / 2.0});
-    player1.setSpeed(5);
-    player2.setSpeed(5);
+    player1.setSpeed(3);
+    player2.setSpeed(3);
     football.updatePosition({SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0});
     while (WindowShouldClose() == false)
     {
@@ -30,6 +30,7 @@ int main()
         background.loadBackground(SCREEN_WIDTH, SCREEN_HEIGHT);
         player1.update();
         player2.update();
+        football.update(&player1, &player2);
         football.draw();
         player1.draw();
         player2.draw();
