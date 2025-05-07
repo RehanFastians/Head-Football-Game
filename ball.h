@@ -15,7 +15,7 @@ public:
     Ball()
     {
         Image temp = LoadImage("images/football.png");
-        ImageResize(&temp, 50, 50);
+        ImageResize(&temp, 30, 30);
         ballImage = LoadTextureFromImage(temp);
         position = {0.0, 0.0};
         speed = {0.0, 0.0};
