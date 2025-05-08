@@ -10,6 +10,7 @@ class Background
     Texture2D goalRight;
 
 public:
+    Background() {}
     Background(const float screenWidth, const float screenHeight)
     {
         Image temp = LoadImage("images/ground.jpg");
@@ -21,6 +22,13 @@ public:
         temp = LoadImage("images/goalR.png");
         ImageResize(&temp, 80, 130);
         goalRight = LoadTextureFromImage(temp);
+        UnloadImage(temp); // Unload the image after loading the texture
+    }
+    ~Background()
+    {
+        UnloadTexture(stadium);
+        UnloadTexture(goalLeft);
+        UnloadTexture(goalRight);
     }
     void loadBackground(const float screenWidth, const float screenHeight);
 };
