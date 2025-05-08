@@ -20,13 +20,13 @@ public:
         position = {0.0, 0.0};
         speed = 0;
     }
-    Vector2 getDirection();
-    Vector2 getPosition();
-    Texture2D getPlayerImage();
-    void setSpeed(int);
-    void updatePosition(Vector2);
-    void draw();
-    void setPosition(Vector2);
+    virtual Vector2 getDirection();
+    virtual Vector2 getPosition();
+    virtual Texture2D getPlayerImage();
+    virtual void setSpeed(int);
+    virtual void updatePosition(Vector2);
+    virtual void draw();
+    virtual void setPosition(Vector2);
     virtual void update(int, int) = 0; // pure virtual function
 };
 

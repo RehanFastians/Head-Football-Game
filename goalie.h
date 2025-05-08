@@ -1,7 +1,8 @@
 #ifndef goalie_h
 #define goalie_h
 #include "raylib.h"
-#include "player.h"
+#include "sprite.h"
+#include "ball.h"
 #include <iostream>
 #include <string>
 
@@ -17,7 +18,7 @@ public:
     {
         Image temp = LoadImage("images/goalKeeper.png");
         if (type == "blue")
-        {        
+        {
             direction = {0.0, 1.0};
             ImageRotate(&temp, 0.0f);
         }
@@ -31,7 +32,8 @@ public:
     }
     int setMinHeight(int);
     int setMaxHeight(int);
-    void update(int, int);
+    void update(int, int){}
+    void update(Ball *, int, int);
 };
 
 #endif

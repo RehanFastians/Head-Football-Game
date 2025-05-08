@@ -16,18 +16,28 @@ int Goalie::setMaxHeight(int maxHeight)
     this->maxHeight = maxHeight;
     return maxHeight;
 }
-void Goalie::update(int horizontalLimit, int verticalLimit)
+void Goalie::update(Ball *ball, int horizontalLimit, int verticalLimit)
 {
-    if(direction.y==1){
-        position.y+=speed;
-    }else if(direction.y==-1){
-        position.y-=speed;
+    if (direction.y == 1)
+    {
+        position.y += speed;
     }
-    if(position.y<minHeight){
-        position.y=minHeight;
-        direction.y=1;
-    }else if(position.y>maxHeight){
-        position.y=maxHeight;
-        direction.y=-1;
+    else if (direction.y == -1)
+    {
+        position.y -= speed;
+    }
+    if (position.y < minHeight)
+    {
+        position.y = minHeight;
+        direction.y = 1;
+    }
+    else if (position.y > maxHeight)
+    {
+        position.y = maxHeight;
+        direction.y = -1;
+    }
+    if (CheckCollisionRecs({position.x, position.y, float(playerImage.width), float(playerImage.height)}, {ball->getPosition().x, ball->getPosition().y, float(ball->getBallImage().width), float(ball->getBallImage().height)}))
+    {
+        ball->setDirection({-(ball->getDirection().x), direction.y});
     }
 }

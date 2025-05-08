@@ -141,3 +141,17 @@ void Ball::update(Player *player1, Player *player2, int horizontalLimit, int ver
     if (position.y > GetScreenHeight() - ballImage.height - verticalLimit)
         position.y = GetScreenHeight() - ballImage.height - verticalLimit;
 }
+
+Vector2 Ball::getDirection()
+{
+    return direction;
+}
+void Ball::setDirection(Vector2 newDirection)
+{
+    direction = newDirection;
+}
+
+Texture2D Ball::getBallImage()
+{
+    return ballImage;
+}

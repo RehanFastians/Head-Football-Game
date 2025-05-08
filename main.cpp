@@ -40,8 +40,8 @@ int main()
         player1.update(horizontalLimit, verticalLimit);
         player2.update(horizontalLimit, verticalLimit);
         football.update(&player1, &player2, horizontalLimit, verticalLimit);
-        goalie1.update(horizontalLimit, verticalLimit);
-        goalie2.update(horizontalLimit, verticalLimit);
+        goalie1.update(&football, horizontalLimit, verticalLimit);
+        goalie2.update(&football, horizontalLimit, verticalLimit);
         goalie1.draw();
         goalie2.draw();
         football.draw();

@@ -25,11 +25,14 @@ public:
         groundResistance = 2;
         direction = {0.0, 0.0};
     }
+    Texture2D getBallImage();
     Vector2 getPosition();
     void setSpeed(int);
     void update(Player *, Player *, int, int);
     void updatePosition(Vector2);
     void draw();
+    Vector2 getDirection();
+    void setDirection(Vector2 newDirection);
 };
 
 #endif
