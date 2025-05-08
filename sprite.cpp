@@ -25,6 +25,7 @@ Texture2D Sprite::getPlayerImage()
 {
     return playerImage;
 }
+
 Vector2 Sprite::getDirection()
 {
     return direction;

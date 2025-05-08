@@ -6,7 +6,6 @@
 
 using namespace std;
 
-
 void Player::update(int horizontalLimit, int verticalLimit)
 {
 

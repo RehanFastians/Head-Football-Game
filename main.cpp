@@ -30,12 +30,11 @@ int main()
         background.loadBackground(SCREEN_WIDTH, SCREEN_HEIGHT);
         player1.update(horizontalLimit, verticalLimit);
         player2.update(horizontalLimit, verticalLimit);
-        football.update(&player1, &player2);
+        football.update(&player1, &player2, horizontalLimit, verticalLimit);
         football.draw();
         player1.draw();
         player2.draw();
         EndDrawing();
     }
-
     CloseWindow();
 }

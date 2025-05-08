@@ -50,7 +50,7 @@ bool Ball ::isKicked()
     }
     return false;
 }
-void Ball::update(Player *player1, Player *player2)
+void Ball::update(Player *player1, Player *player2, int horizontalLimit, int verticalLimit)
 {
     checkPlayerCollision(player1, player2);
 
@@ -132,12 +132,12 @@ void Ball::update(Player *player1, Player *player2)
     }
 
     // Ensure position stays within screen bounds
-    if (position.x < 0)
-        position.x = 0;
-    if (position.x > GetScreenWidth() - ballImage.width)
-        position.x = GetScreenWidth() - ballImage.width;
-    if (position.y < 0)
-        position.y = 0;
-    if (position.y > GetScreenHeight() - ballImage.height)
-        position.y = GetScreenHeight() - ballImage.height;
+    if (position.x < horizontalLimit)
+        position.x = horizontalLimit;
+    if (position.x > GetScreenWidth() - ballImage.width - horizontalLimit)
+        position.x = GetScreenWidth() - ballImage.width - horizontalLimit;
+    if (position.y < verticalLimit)
+        position.y = verticalLimit;
+    if (position.y > GetScreenHeight() - ballImage.height - verticalLimit)
+        position.y = GetScreenHeight() - ballImage.height - verticalLimit;
 }

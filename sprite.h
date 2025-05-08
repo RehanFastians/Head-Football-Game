@@ -9,7 +9,7 @@ using namespace std;
 class Sprite
 {
 protected:
-    string type; // team type
+    string type;           // team type
     Texture2D playerImage; // Image of the sprite
     Vector2 position;      // Position of the sprite
     int speed;             // Speed of the sprite
@@ -27,6 +27,7 @@ public:
     void updatePosition(Vector2);
     void draw();
     void setPosition(Vector2);
+    virtual void update(int, int) = 0; // pure virtual function
 };
 
 #endif

@@ -27,7 +27,7 @@ public:
     }
     Vector2 getPosition();
     void setSpeed(int);
-    void update(Player *, Player *);
+    void update(Player *, Player *, int, int);
     void updatePosition(Vector2);
     void draw();
 };
