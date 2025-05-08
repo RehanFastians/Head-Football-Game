@@ -17,7 +17,7 @@ public:
     {
         Image temp = LoadImage("images/goalKeeper.png");
         if (type == "blue")
-        {
+        {        
             direction = {0.0, 1.0};
             ImageRotate(&temp, 0.0f);
         }
@@ -27,7 +27,7 @@ public:
             ImageRotate(&temp, 180.0f);
         }
         playerImage = LoadTextureFromImage(temp);
-        speed = 10;
+        speed = 1;
     }
     int setMinHeight(int);
     int setMaxHeight(int);

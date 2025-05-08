@@ -14,6 +14,7 @@ class Player : public Sprite // Inherit from Sprite class
     int controlsKey[4];
     int kickKey;   // key to kick the ball
     int kickPower; // power of kick
+
 public:
     Player(string type)
     {
@@ -44,6 +45,7 @@ public:
         playerImage = LoadTextureFromImage(temp);
         position = {0.0, 0.0};
         speed = 0;
+        UnloadImage(temp); // Unload the image after loading the texture
     }
     void update(int, int);
     ~Player()
