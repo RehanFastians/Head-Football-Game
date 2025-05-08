@@ -42,7 +42,7 @@ public:
         }
 
         kickPower = 30; // default kick power
-        playerImage = LoadTextureFromImage(temp);
+        spriteImage = LoadTextureFromImage(temp);
         position = {0.0, 0.0};
         speed = 0;
         UnloadImage(temp); // Unload the image after loading the texture
@@ -50,7 +50,7 @@ public:
     void update(int, int);
     ~Player()
     {
-        UnloadTexture(playerImage);
+        UnloadTexture(spriteImage);
     }
     friend class Ball; // allow Ball class to access private members of Player class
 };

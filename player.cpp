@@ -92,13 +92,14 @@ void Player::update(int horizontalLimit, int verticalLimit)
     }
     if (position.x < horizontalLimit)
         position.x = horizontalLimit;
-    if (position.x > GetScreenWidth() - playerImage.width - horizontalLimit)
-        position.x = GetScreenWidth() - playerImage.width - horizontalLimit;
+    if (position.x > GetScreenWidth() - spriteImage.width - horizontalLimit)
+        position.x = GetScreenWidth() - spriteImage.width - horizontalLimit;
     if (position.y < verticalLimit)
         position.y = verticalLimit;
-    if (position.y > GetScreenHeight() - playerImage.height - verticalLimit)
-        position.y = GetScreenHeight() - playerImage.height - verticalLimit;
-
-    playerImage = LoadTextureFromImage(temp);
+    if (position.y > GetScreenHeight() - spriteImage.height - verticalLimit)
+        position.y = GetScreenHeight() - spriteImage.height - verticalLimit;
+    // Unload the previous texture before loading a new one
+    UnloadTexture(spriteImage);
+    spriteImage = LoadTextureFromImage(temp);
     UnloadImage(temp);
 }

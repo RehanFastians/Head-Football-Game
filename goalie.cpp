@@ -36,8 +36,9 @@ void Goalie::update(Ball *ball, int horizontalLimit, int verticalLimit)
         position.y = maxHeight;
         direction.y = -1;
     }
-    if (CheckCollisionRecs({position.x, position.y, float(playerImage.width), float(playerImage.height)}, {ball->getPosition().x, ball->getPosition().y, float(ball->getBallImage().width), float(ball->getBallImage().height)}))
+    if (CheckCollisionRecs({position.x, position.y, float(spriteImage.width), float(spriteImage.height)}, {ball->getPosition().x, ball->getPosition().y, float(ball->getSpriteImage().width), float(ball->getSpriteImage().height)}))
     {
         ball->setDirection({-(ball->getDirection().x), direction.y});
+        ball->setSpeed(ball->getSpeed() + 5);
     }
 }

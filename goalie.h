@@ -27,7 +27,7 @@ public:
             direction = {0.0, -1.0};
             ImageRotate(&temp, 180.0f);
         }
-        playerImage = LoadTextureFromImage(temp);
+        spriteImage = LoadTextureFromImage(temp);
         speed = 1;
     }
     int setMinHeight(int);

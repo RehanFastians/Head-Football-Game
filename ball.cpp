@@ -4,34 +4,13 @@
 #include "raylib.h"
 using namespace std;
 
-Vector2 Ball ::getPosition()
-{
-    return position;
-}
-
-void Ball ::draw()
-{
-    DrawTextureV(ballImage, position, WHITE);
-}
-
-void Ball ::setSpeed(int speed)
-{
-    this->speed = speed;
-}
-
-void Ball ::updatePosition(Vector2 pos)
-{
-    position.x = pos.x;
-    position.y = pos.y;
-}
-
 void Ball ::checkPlayerCollision(Player *player1, Player *player2)
 {
-    if (CheckCollisionRecs({position.x, position.y, float(ballImage.width), float(ballImage.height)}, {player1->getPosition().x, player1->getPosition().y, float(player1->getPlayerImage().width), float(player1->getPlayerImage().height)}))
+    if (CheckCollisionRecs({position.x, position.y, float(spriteImage.width), float(spriteImage.height)}, {player1->getPosition().x, player1->getPosition().y, float(player1->getSpriteImage().width), float(player1->getSpriteImage().height)}))
     {
         player = player1;
     }
-    else if (CheckCollisionRecs({position.x, position.y, float(ballImage.width), float(ballImage.height)}, {player2->getPosition().x, player2->getPosition().y, float(player2->getPlayerImage().width), float(player2->getPlayerImage().height)}))
+    else if (CheckCollisionRecs({position.x, position.y, float(spriteImage.width), float(spriteImage.height)}, {player2->getPosition().x, player2->getPosition().y, float(player2->getSpriteImage().width), float(player2->getSpriteImage().height)}))
     {
         player = player2;
     }
@@ -134,24 +113,10 @@ void Ball::update(Player *player1, Player *player2, int horizontalLimit, int ver
     // Ensure position stays within screen bounds
     if (position.x < horizontalLimit)
         position.x = horizontalLimit;
-    if (position.x > GetScreenWidth() - ballImage.width - horizontalLimit)
-        position.x = GetScreenWidth() - ballImage.width - horizontalLimit;
+    if (position.x > GetScreenWidth() - spriteImage.width - horizontalLimit)
+        position.x = GetScreenWidth() - spriteImage.width - horizontalLimit;
     if (position.y < verticalLimit)
         position.y = verticalLimit;
-    if (position.y > GetScreenHeight() - ballImage.height - verticalLimit)
-        position.y = GetScreenHeight() - ballImage.height - verticalLimit;
-}
-
-Vector2 Ball::getDirection()
-{
-    return direction;
-}
-void Ball::setDirection(Vector2 newDirection)
-{
-    direction = newDirection;
-}
-
-Texture2D Ball::getBallImage()
-{
-    return ballImage;
+    if (position.y > GetScreenHeight() - spriteImage.height - verticalLimit)
+        position.y = GetScreenHeight() - spriteImage.height - verticalLimit;
 }

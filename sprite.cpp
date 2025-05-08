@@ -4,6 +4,10 @@
 #include <string>
 using namespace std;
 
+void Sprite::setDirection(Vector2 newDirection)
+{
+    direction = newDirection;
+}
 Vector2 Sprite::getPosition()
 {
     return position;
@@ -21,9 +25,9 @@ void Sprite::updatePosition(Vector2 newPosition)
     position = newPosition;
 }
 
-Texture2D Sprite::getPlayerImage()
+Texture2D Sprite::getSpriteImage()
 {
-    return playerImage;
+    return spriteImage;
 }
 
 Vector2 Sprite::getDirection()
@@ -33,5 +37,10 @@ Vector2 Sprite::getDirection()
 
 void Sprite ::draw()
 {
-    DrawTexture(playerImage, position.x, position.y, WHITE);
+    DrawTexture(spriteImage, position.x, position.y, WHITE);
+}
+
+int Sprite::getSpeed()
+{
+    return speed;
 }

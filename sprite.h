@@ -10,7 +10,7 @@ class Sprite
 {
 protected:
     string type;           // team type
-    Texture2D playerImage; // Image of the sprite
+    Texture2D spriteImage; // Image of the sprite
     Vector2 position;      // Position of the sprite
     int speed;             // Speed of the sprite
     Vector2 direction;     // Direction of the sprite
@@ -22,7 +22,9 @@ public:
     }
     virtual Vector2 getDirection();
     virtual Vector2 getPosition();
-    virtual Texture2D getPlayerImage();
+    int getSpeed();
+    virtual void setDirection(Vector2 newDirection);
+    virtual Texture2D getSpriteImage();
     virtual void setSpeed(int);
     virtual void updatePosition(Vector2);
     virtual void draw();
