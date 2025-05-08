@@ -29,19 +29,14 @@ void FootballGame::isGoaled()
     // Check if the ball is in the goal area of either team
     if (((Ball *)entities[4])->getPosition().x <= horizontalLimit && ((Ball *)entities[4])->getPosition().y >= ((Goalie *)entities[2])->getMinHeight() && ((Ball *)entities[4])->getPosition().y <= ((Goalie *)entities[2])->getMaxHeight())
     {
-        score[0]++;
+        score[1]++;
         resetPositons();
     }
     else if (((Ball *)entities[4])->getPosition().x >= SCREEN_WIDTH - horizontalLimit - ((Ball *)entities[4])->getSpriteImage().width && ((Ball *)entities[4])->getPosition().y >= ((Goalie *)entities[3])->getMinHeight() && ((Ball *)entities[4])->getPosition().y <= ((Goalie *)entities[3])->getMaxHeight())
     {
-        score[1]++;
+        score[0]++;
         resetPositons();
     }
-    // else if (((Ball *)entities[4])->getPosition().x > SCREEN_WIDTH)
-    // {
-    //     score[0]++;
-    //     resetPositons();
-    // }
 }
 
 void FootballGame::simulateGame()
@@ -69,7 +64,17 @@ void FootballGame::simulateGame()
         {
             entities[i]->draw();
         }
-
+        // Draw Score
+        DrawText(TextFormat("%d - %d", score[0], score[1]), SCREEN_WIDTH / 2.0 - 50, 10, 45, BLACK);
+        // Draw Time
+        DrawText(TextFormat("Time: %d", timeElapsed / 60), SCREEN_WIDTH / 2.0 - 30, SCREEN_HEIGHT - 30, 30, BLACK);
+        timeElapsed++;
+        if (timeElapsed >= timeLimit * 60) // Assuming 60 FPS, convert time limit to frames
+        {
+            DrawText("Game Over", SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 - 10, 20, RED);
+            DrawText(TextFormat("Final Score: %d - %d", score[0], score[1]), SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 + 20, 20, RED);
+            break;
+        }
         EndDrawing();
     }
 }
