@@ -42,3 +42,13 @@ void Goalie::update(Ball *ball, int horizontalLimit, int verticalLimit)
         ball->setSpeed(ball->getSpeed() + 5);
     }
 }
+
+int Goalie::getMinHeight()
+{
+    return minHeight;
+}
+
+int Goalie::getMaxHeight()
+{
+    return maxHeight;
+}

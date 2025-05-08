@@ -16,7 +16,12 @@ class FootballGame
     const int horizontalLimit = 55;
     const int verticalLimit = 50;
     Background background;
-    Sprite *entities[5]; // Array to hold player, goalie and ball objects
+    Sprite *entities[5];   // Array to hold player, goalie and ball objects
+    int score[2] = {0, 0}; // Array to hold scores for each team
+    int timeLimit = 90;    // Time limit for the game in seconds
+    int timeElapsed = 0;   // Time elapsed in seconds
+    void isGoaled();
+    void resetPositons();
 
 public:
     FootballGame() : background(SCREEN_WIDTH, SCREEN_HEIGHT)

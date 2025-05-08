@@ -32,6 +32,8 @@ public:
     }
     int setMinHeight(int);
     int setMaxHeight(int);
+    int getMinHeight();
+    int getMaxHeight();
     void update(int, int){}
     void update(Ball *, int, int);
 };

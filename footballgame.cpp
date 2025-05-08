@@ -8,6 +8,42 @@
 #include <string>
 using namespace std;
 
+void FootballGame ::resetPositons()
+{
+    // Reset player and goalie positions
+    ((Player *)entities[0])->setPosition({float(SCREEN_WIDTH / 2.0 - 100), float(SCREEN_HEIGHT / 2.0)});
+    ((Player *)entities[1])->setPosition({float(SCREEN_WIDTH / 2.0 + 100), float(SCREEN_HEIGHT / 2.0)});
+    ((Player *)entities[1])->setDirection({-1.0, 0.0}); // default direction is left
+    ((Player *)entities[0])->setDirection({1.0, 0.0});  // default direction is right
+    ((Goalie *)entities[2])->setDirection({0.0, 1.0});
+    ((Goalie *)entities[3])->setDirection({0.0, -1.0}); // default direction is left
+    ((Ball *)entities[4])->setDirection({0.0, 0.0});
+    ((Ball *)entities[4])->setSpeed(0);
+    ((Goalie *)entities[2])->setPosition({80, float(SCREEN_HEIGHT / 2.0)});
+    ((Goalie *)entities[3])->setPosition({float(SCREEN_WIDTH - 100), float(SCREEN_HEIGHT / 2.0)});
+    ((Ball *)entities[4])->updatePosition({float(SCREEN_WIDTH / 2.0 - 7), float(SCREEN_HEIGHT / 2.0 - 7)});
+}
+
+void FootballGame::isGoaled()
+{
+    // Check if the ball is in the goal area of either team
+    if (((Ball *)entities[4])->getPosition().x <= horizontalLimit && ((Ball *)entities[4])->getPosition().y >= ((Goalie *)entities[2])->getMinHeight() && ((Ball *)entities[4])->getPosition().y <= ((Goalie *)entities[2])->getMaxHeight())
+    {
+        score[0]++;
+        resetPositons();
+    }
+    else if (((Ball *)entities[4])->getPosition().x >= SCREEN_WIDTH - horizontalLimit - ((Ball *)entities[4])->getSpriteImage().width && ((Ball *)entities[4])->getPosition().y >= ((Goalie *)entities[3])->getMinHeight() && ((Ball *)entities[4])->getPosition().y <= ((Goalie *)entities[3])->getMaxHeight())
+    {
+        score[1]++;
+        resetPositons();
+    }
+    // else if (((Ball *)entities[4])->getPosition().x > SCREEN_WIDTH)
+    // {
+    //     score[0]++;
+    //     resetPositons();
+    // }
+}
+
 void FootballGame::simulateGame()
 {
     // Initialize player and goalie positions
@@ -27,6 +63,7 @@ void FootballGame::simulateGame()
         ((Ball *)entities[4])->update((Player *)entities[0], (Player *)entities[1], horizontalLimit, verticalLimit); // Update ball position based on player positions
         ((Goalie *)entities[2])->update((Ball *)entities[4], horizontalLimit, verticalLimit);                        // Update goalie 1 position based on ball position
         ((Goalie *)entities[3])->update((Ball *)entities[4], horizontalLimit, verticalLimit);                        // Update goalie 2 position based on ball position
+        isGoaled();                                                                                                  // Check if a goal has been scored
         // Draw Entities
         for (int i = 0; i < 5; i++)
         {
