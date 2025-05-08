@@ -3,11 +3,13 @@
 
 #include "raylib.h"
 #include <iostream>
+#include <iostream>
 #include <string>
-
+using namespace std;
 class Sprite
 {
 protected:
+    string type; // team type
     Texture2D playerImage; // Image of the sprite
     Vector2 position;      // Position of the sprite
     int speed;             // Speed of the sprite

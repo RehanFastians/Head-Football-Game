@@ -25,7 +25,6 @@ int main()
     football.updatePosition({SCREEN_WIDTH / 2.0 - 7, SCREEN_HEIGHT / 2.0 -7});
     while (WindowShouldClose() == false)
     {
-
         BeginDrawing();
         ClearBackground(WHITE);
         background.loadBackground(SCREEN_WIDTH, SCREEN_HEIGHT);

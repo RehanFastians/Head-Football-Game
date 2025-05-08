@@ -3,21 +3,17 @@
 
 #include "raylib.h"
 #include "ball.h"
+#include "sprite.h"
 #include <iostream>
 #include <string>
 
 using namespace std;
-class Player
+class Player : public Sprite // Inherit from Sprite class
 {
-    string type;
-    Texture2D playerImage;
-    Vector2 position;
-    int speed;
-    double groundResistance;
+
     int controlsKey[4];
-    Vector2 direction; // direction of player
-    int kickKey;       // key to kick the ball
-    int kickPower;     // power of kick
+    int kickKey;   // key to kick the ball
+    int kickPower; // power of kick
 public:
     Player(string type)
     {
@@ -48,16 +44,8 @@ public:
         playerImage = LoadTextureFromImage(temp);
         position = {0.0, 0.0};
         speed = 0;
-        groundResistance = 5;
     }
-    Vector2 getDirection();
-    Vector2 getPosition();
-    Texture2D getPlayerImage();
-    void setSpeed(int);
     void update(int, int);
-    void updatePosition(Vector2);
-    void draw();
-    void setPosition(Vector2);
     ~Player()
     {
         UnloadTexture(playerImage);

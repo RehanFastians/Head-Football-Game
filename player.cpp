@@ -1,23 +1,11 @@
 #include "player.h"
 #include "raylib.h"
+#include "sprite.h"
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-Vector2 Player::getPosition()
-{
-    return position;
-}
-void Player::setSpeed(int newSpeed)
-{
-    speed = newSpeed;
-}
-
-void Player::setPosition(Vector2 newPosition)
-{
-    position = newPosition;
-}
 
 void Player::update(int horizontalLimit, int verticalLimit)
 {
@@ -105,31 +93,13 @@ void Player::update(int horizontalLimit, int verticalLimit)
     }
     if (position.x < horizontalLimit)
         position.x = horizontalLimit;
-    if (position.x > GetScreenWidth() - playerImage.width-horizontalLimit)
-        position.x = GetScreenWidth() - playerImage.width-horizontalLimit;
+    if (position.x > GetScreenWidth() - playerImage.width - horizontalLimit)
+        position.x = GetScreenWidth() - playerImage.width - horizontalLimit;
     if (position.y < verticalLimit)
         position.y = verticalLimit;
-    if (position.y > GetScreenHeight() - playerImage.height-verticalLimit)
-        position.y = GetScreenHeight() - playerImage.height-verticalLimit;
+    if (position.y > GetScreenHeight() - playerImage.height - verticalLimit)
+        position.y = GetScreenHeight() - playerImage.height - verticalLimit;
 
     playerImage = LoadTextureFromImage(temp);
     UnloadImage(temp);
-}
-void Player::updatePosition(Vector2 newPosition)
-{
-    position = newPosition;
-}
-void Player::draw()
-{
-    DrawTexture(playerImage, position.x, position.y, WHITE);
-}
-
-Vector2 Player::getDirection()
-{
-    return direction;
-}
-
-Texture2D Player::getPlayerImage()
-{
-    return playerImage;
 }
