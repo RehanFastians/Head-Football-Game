@@ -65,16 +65,24 @@ void FootballGame::simulateGame()
             entities[i]->draw();
         }
         // Draw Score
-        DrawText(TextFormat("%d - %d", score[0], score[1]), SCREEN_WIDTH / 2.0 - 50, 10, 45, BLACK);
+        DrawText(TextFormat("%d - %d", score[0], score[1]), SCREEN_WIDTH / 2.0 - 50, 10, 45, WHITE);
         // Draw Time
-        DrawText(TextFormat("Time: %d", timeElapsed / 60), SCREEN_WIDTH / 2.0 - 30, SCREEN_HEIGHT - 30, 30, BLACK);
+        DrawText(TextFormat("Time: %d", timeElapsed / 60), SCREEN_WIDTH / 2.0 - 30, SCREEN_HEIGHT - 35, 30, WHITE);
         timeElapsed++;
         if (timeElapsed >= timeLimit * 60) // Assuming 60 FPS, convert time limit to frames
         {
-            DrawText("Game Over", SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 - 10, 20, RED);
-            DrawText(TextFormat("Final Score: %d - %d", score[0], score[1]), SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 + 20, 20, RED);
+            EndDrawing();
             break;
         }
+        EndDrawing();
+    }
+    int delay = 0;
+    while (delay < 300) // Display "Game Over" for 1 second
+    {
+        BeginDrawing();
+        DrawText("Game Over", SCREEN_WIDTH / 2 - 150, SCREEN_HEIGHT / 2 - 150, 50, BLACK);
+        DrawText(TextFormat("Final Score: %d - %d", score[0], score[1]), SCREEN_WIDTH / 2 - 200, SCREEN_HEIGHT / 2 + 20, 50, BLACK);
+        delay++;
         EndDrawing();
     }
 }
