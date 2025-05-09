@@ -39,8 +39,41 @@ void FootballGame::isGoaled()
     }
 }
 
+void FootballGame ::showOpeningScreen()
+{
+
+    Image temp = LoadImage("images/opening.png");
+    ImageResize(&temp, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+    // enter any key to start the game
+    while (!WindowShouldClose())
+    {
+        BeginDrawing();
+        ClearBackground(WHITE);
+        DrawTexture(LoadTextureFromImage(temp), 0, 0, WHITE); // Load and draw the background image
+        EndDrawing();
+        if (IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE) || IsKeyPressed(KEY_ESCAPE))
+            break;
+    }
+}
+
+void FootballGame ::showClosingScreen()
+{
+
+    int delay = 0;
+    while (delay < 300) // Display "Game Over" for 1 second
+    {
+        BeginDrawing();
+        DrawText("Game Over", SCREEN_WIDTH / 2 - 150, SCREEN_HEIGHT / 2 - 150, 50, BLACK);
+        DrawText(TextFormat("Final Score: %d - %d", score[0], score[1]), SCREEN_WIDTH / 2 - 200, SCREEN_HEIGHT / 2 + 20, 50, BLACK);
+        delay++;
+        EndDrawing();
+    }
+}
+
 void FootballGame::simulateGame()
 {
+    showOpeningScreen(); // Show opening screen before starting the game
     // Initialize player and goalie positions
     ((Player *)entities[0])->setPosition({float(SCREEN_WIDTH / 2.0 - 100), float(SCREEN_HEIGHT / 2.0)});
     ((Player *)entities[1])->setPosition({float(SCREEN_WIDTH / 2.0 + 100), float(SCREEN_HEIGHT / 2.0)});
@@ -76,13 +109,5 @@ void FootballGame::simulateGame()
         }
         EndDrawing();
     }
-    int delay = 0;
-    while (delay < 300) // Display "Game Over" for 1 second
-    {
-        BeginDrawing();
-        DrawText("Game Over", SCREEN_WIDTH / 2 - 150, SCREEN_HEIGHT / 2 - 150, 50, BLACK);
-        DrawText(TextFormat("Final Score: %d - %d", score[0], score[1]), SCREEN_WIDTH / 2 - 200, SCREEN_HEIGHT / 2 + 20, 50, BLACK);
-        delay++;
-        EndDrawing();
-    }
+    showClosingScreen(); // Show closing screen after the game ends
 }

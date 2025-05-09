@@ -18,10 +18,12 @@ class FootballGame
     Background background;
     Sprite *entities[5];   // Array to hold player, goalie and ball objects
     int score[2] = {0, 0}; // Array to hold scores for each team
-    int timeLimit = 2;    // Time limit for the game in seconds
+    int timeLimit = 20;    // Time limit for the game in seconds
     int timeElapsed = 0;   // Time elapsed in seconds
     void isGoaled();
     void resetPositons();
+    void showClosingScreen();
+    void showOpeningScreen();
 
 public:
     FootballGame() : background(SCREEN_WIDTH, SCREEN_HEIGHT)
