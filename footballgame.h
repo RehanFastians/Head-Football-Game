@@ -15,21 +15,27 @@ class FootballGame
     const float SCREEN_HEIGHT = 800;
     const int horizontalLimit = 55;
     const int verticalLimit = 50;
+    Sound backgroundMusic;
+    Sound goalSound; // Sound for goal celebration
     Background background;
     Sprite *entities[5];   // Array to hold player, goalie and ball objects
     int score[2] = {0, 0}; // Array to hold scores for each team
-    int timeLimit = 20;    // Time limit for the game in seconds
+    int timeLimit = 90;    // Time limit for the game in seconds
     int timeElapsed = 0;   // Time elapsed in seconds
     void isGoaled();
     void resetPositons();
     void showClosingScreen();
     void showOpeningScreen();
+    void simulatePausedScreen();
+    void pauseForGoal(int);
 
 public:
     FootballGame() : background(SCREEN_WIDTH, SCREEN_HEIGHT)
     {
         SetTargetFPS(60);
         background.loadBackground(SCREEN_WIDTH, SCREEN_HEIGHT);
+        backgroundMusic = LoadSound("audio/music.mp3");
+        goalSound = LoadSound("audio/goal.mp3"); // Load goal sound
         entities[0] = new Player("blue");
         entities[1] = new Player("red");
         entities[2] = new Goalie("blue");

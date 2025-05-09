@@ -35,6 +35,7 @@ void Ball::update(Player *player1, Player *player2, int horizontalLimit, int ver
 
     if (isKicked())
     {
+        PlaySound(kickSound); // Play kick sound
         if (player)
         {
             speed = player->kickPower;

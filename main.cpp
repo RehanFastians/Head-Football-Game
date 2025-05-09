@@ -12,6 +12,7 @@ int main()
     const float SCREEN_WIDTH = 1500;
     const float SCREEN_HEIGHT = 800;
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Football Game");
+    InitAudioDevice(); // Initialize audio device
     FootballGame game;
     game.simulateGame();
     // const int horizontalLimit = 55;
