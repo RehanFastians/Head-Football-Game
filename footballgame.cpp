@@ -142,8 +142,9 @@ void FootballGame::isHighestScored()
         while (pause < 300)
         {
             BeginDrawing();
-            ClearBackground(GREEN);
-            DrawText(highestGoalScored.c_str(), SCREEN_WIDTH / 2 - 250, SCREEN_HEIGHT / 2 - 200, 60, BLACK);
+            ClearBackground(WHITE);
+            DrawTexture(highScoreScreen, 0, 0, WHITE);
+            DrawText(highestGoalScored.c_str(), SCREEN_WIDTH / 2 - 300, SCREEN_HEIGHT / 2 - 300, 60, BLACK);
             pause++;
             EndDrawing();
         }

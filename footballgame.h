@@ -16,6 +16,7 @@ class FootballGame
     const int horizontalLimit = 55;
     const int verticalLimit = 50;
     Texture2D openingScreen;
+    Texture2D highScoreScreen;
     Sound backgroundMusic;
     Sound highscoreSound;
     Sound goalSound; // Sound for goal celebration
@@ -42,6 +43,9 @@ public:
             Image temp = LoadImage("images/Newopening.png");
             ImageResize(&temp, SCREEN_WIDTH, SCREEN_HEIGHT);
             openingScreen = LoadTextureFromImage(temp);
+            temp = LoadImage("images/stadium.jpg");
+            ImageResize(&temp, SCREEN_WIDTH, SCREEN_HEIGHT);
+            highScoreScreen = LoadTextureFromImage(temp);
             if (temp.width == 0 || temp.height == 0)
             {
                 throw runtime_error("Failed to load opening screen image: images/openingScreen.png");
