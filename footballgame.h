@@ -15,6 +15,7 @@ class FootballGame
     const float SCREEN_HEIGHT = 800;
     const int horizontalLimit = 55;
     const int verticalLimit = 50;
+    Texture2D openingScreen;
     Sound backgroundMusic;
     Sound highscoreSound;
     Sound goalSound; // Sound for goal celebration
@@ -32,10 +33,19 @@ class FootballGame
     void isHighestScored();
 
 public:
-    FootballGame() try : background(SCREEN_WIDTH, SCREEN_HEIGHT)
+    FootballGame()
+    try : background(SCREEN_WIDTH, SCREEN_HEIGHT)
     {
         SetTargetFPS(60);
-        try{
+        try
+        {
+            Image temp = LoadImage("images/Newopening.png");
+            ImageResize(&temp, SCREEN_WIDTH, SCREEN_HEIGHT);
+            openingScreen = LoadTextureFromImage(temp);
+            if (temp.width == 0 || temp.height == 0)
+            {
+                throw runtime_error("Failed to load opening screen image: images/openingScreen.png");
+            }
             background.loadBackground(SCREEN_WIDTH, SCREEN_HEIGHT);
             backgroundMusic = LoadSound("audio/music.mp3");
             highscoreSound = LoadSound("audio/NewHighScore.mp3");
@@ -63,13 +73,16 @@ public:
             ((Goalie *)entities[2])->setMaxHeight(450);
             ((Goalie *)entities[3])->setMinHeight(320);
             ((Goalie *)entities[3])->setMaxHeight(450);
-        }catch(const exception &e){
-            cout<<"SetUp Error: "<<e.what()<<endl;
+        }
+        catch (const exception &e)
+        {
+            cout << "SetUp Error: " << e.what() << endl;
         }
     }
-    catch (const exception& e) {
-    cout << "Constructor exception : " << e.what() << endl;
-}
+    catch (const exception &e)
+    {
+        cout << "Constructor exception : " << e.what() << endl;
+    }
 
     void simulateGame();
 };

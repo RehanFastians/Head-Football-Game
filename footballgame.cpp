@@ -7,7 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include<stdexcept>
+#include <stdexcept>
 using namespace std;
 
 bool flag = false;
@@ -81,13 +81,13 @@ void FootballGame::isGoaled()
             highestGoalScored = "\t\tNEW RECORD\nHighest Goal Scored: " + to_string(score[1]);
         }
         PlaySound(goalSound);
-        DrawText("GOOAAALLL",SCREEN_WIDTH/2,SCREEN_HEIGHT/3,50,BLACK);
+        DrawText("GOOAAALLL", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3, 50, BLACK);
         pauseForGoal(3.5);
         resetPositons();
     }
     else if (((Ball *)entities[4])->getPosition().x >= SCREEN_WIDTH - horizontalLimit - ((Ball *)entities[4])->getSpriteImage().width &&
-    ((Ball *)entities[4])->getPosition().y >= ((Goalie *)entities[3])->getMinHeight() &&
-    ((Ball *)entities[4])->getPosition().y <= ((Goalie *)entities[3])->getMaxHeight())
+             ((Ball *)entities[4])->getPosition().y >= ((Goalie *)entities[3])->getMinHeight() &&
+             ((Ball *)entities[4])->getPosition().y <= ((Goalie *)entities[3])->getMaxHeight())
     {
         score[0]++;
         if (score[0] > highScore)
@@ -99,7 +99,7 @@ void FootballGame::isGoaled()
             highestGoalScored = "\t\tNEW RECORD\nHighest Goal Scored: " + to_string(score[0]);
         }
         PlaySound(goalSound);
-        DrawText("GOOAAALLL",SCREEN_WIDTH/2,SCREEN_HEIGHT/3,50,BLACK);
+        DrawText("GOOAAALLL", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3, 50, BLACK);
         pauseForGoal(3.5);
         resetPositons();
     }
@@ -107,14 +107,12 @@ void FootballGame::isGoaled()
 
 void FootballGame::showOpeningScreen()
 {
-    Image temp = LoadImage("images/Newopening.png");
-    ImageResize(&temp, SCREEN_WIDTH, SCREEN_HEIGHT);
     while (!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(WHITE);
-        DrawTexture(LoadTextureFromImage(temp), 0, 0, WHITE);
-        DrawText("Press any key to start",SCREEN_WIDTH/2-300,SCREEN_HEIGHT/2+300,40,WHITE);
+        DrawTexture(openingScreen, 0, 0, WHITE);
+        DrawText("Press any key to start", SCREEN_WIDTH / 2 - 300, SCREEN_HEIGHT / 2 + 300, 40, WHITE);
         EndDrawing();
         if (IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE) || IsKeyPressed(KEY_ESCAPE))
             break;
@@ -139,7 +137,7 @@ void FootballGame::isHighestScored()
     if (flag)
     {
         PlaySound(highscoreSound);
-        SetSoundVolume(highscoreSound,0.5f);
+        SetSoundVolume(highscoreSound, 0.5f);
         int pause = 0;
         while (pause < 300)
         {
@@ -168,40 +166,43 @@ void FootballGame::simulateGame()
 
     while (!WindowShouldClose())
     {
-        try{
+        try
+        {
 
             if (IsKeyDown(KEY_TAB))
             {
                 simulatePausedScreen();
             }
-    
+
             BeginDrawing();
             ClearBackground(WHITE);
             background.loadBackground(SCREEN_WIDTH, SCREEN_HEIGHT);
-    
+
             entities[0]->update(horizontalLimit, verticalLimit);
             entities[1]->update(horizontalLimit, verticalLimit);
             ((Ball *)entities[4])->update((Player *)entities[0], (Player *)entities[1], horizontalLimit, verticalLimit);
             ((Goalie *)entities[2])->update((Ball *)entities[4], horizontalLimit, verticalLimit);
             ((Goalie *)entities[3])->update((Ball *)entities[4], horizontalLimit, verticalLimit);
             isGoaled();
-    
+
             for (int i = 0; i < 5; i++)
             {
                 entities[i]->draw();
             }
-    
+
             DrawText(TextFormat("%d - %d", score[0], score[1]), SCREEN_WIDTH / 2.0 - 50, 10, 45, WHITE);
             DrawText(TextFormat("Time: %d", timeElapsed / 60), SCREEN_WIDTH / 2.0 - 30, SCREEN_HEIGHT - 35, 30, WHITE);
             timeElapsed++;
-    
+
             if (timeElapsed >= timeLimit * 60)
             {
                 EndDrawing();
                 break;
             }
-        }catch(const exception &e){
-            cout<<"Exceotion caught: "<<e.what()<<endl;
+        }
+        catch (const exception &e)
+        {
+            cout << "Exceotion caught: " << e.what() << endl;
         }
 
         EndDrawing();
