@@ -11,10 +11,19 @@ int main()
     // Initialize the game
     const float SCREEN_WIDTH = 1500;
     const float SCREEN_HEIGHT = 800;
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Football Game");
-    InitAudioDevice(); // Initialize audio device
-    FootballGame game;
-    game.simulateGame();
+    try{
+
+        InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Football Game");
+        InitAudioDevice(); // Initialize audio device
+        FootballGame game;
+        game.simulateGame();
+    }catch (const std::exception& e) {
+        cerr << "Unhandled exception: " << e.what() << endl;
+    } catch (...) {
+        cerr << "An unknown error occurred." << endl;
+    }
+
+    return 0;
     // const int horizontalLimit = 55;
     // const int verticalLimit = 50;
     // InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Head Football Game");

@@ -54,10 +54,18 @@ void Player::update(int horizontalLimit, int verticalLimit)
         direction = {1.0, 0.0}; // right
     }
     Image temp;
-    if (type == "blue")
+    if (type == "blue"){
         temp = LoadImage("images/playerBlue.png");
-    else
+        if (temp.width == 0 || temp.height == 0) {
+                throw runtime_error("Failed to load BluePlayer image: images/playerBlue.png");
+            }
+    }
+    else{
         temp = LoadImage("images/playerRed.png");
+        if (temp.width == 0 || temp.height == 0) {
+                throw runtime_error("Failed to load BluePlayer image: images/playerBlue.png");
+            }
+    }
     if (direction.x == 0.0 && direction.y == 1.0)
     {
         ImageRotate(&temp, 90.0f);
@@ -101,5 +109,8 @@ void Player::update(int horizontalLimit, int verticalLimit)
     // Unload the previous texture before loading a new one
     UnloadTexture(spriteImage);
     spriteImage = LoadTextureFromImage(temp);
+     if (spriteImage.id == 0) {
+            throw runtime_error("Failed to create texture from image");
+    }
     UnloadImage(temp);
 }
