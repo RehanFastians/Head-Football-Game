@@ -139,7 +139,7 @@ void FootballGame::isHighestScored()
         PlaySound(highscoreSound);
         SetSoundVolume(highscoreSound, 0.5f);
         int pause = 0;
-        while (pause < 300)
+        while (pause < 5 * 60)
         {
             BeginDrawing();
             ClearBackground(WHITE);
@@ -203,7 +203,7 @@ void FootballGame::simulateGame()
         }
         catch (const exception &e)
         {
-            cout << "Exceotion caught: " << e.what() << endl;
+            cout << "Exception caught: " << e.what() << endl;
         }
 
         EndDrawing();
